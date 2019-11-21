@@ -22,7 +22,7 @@
 
     function deviceOrientationHandler(eventData) {
       console.log(eventData);
-      app.innerHTML = eventData + ' : ' + (eventData.gamma).toFixed(0) + '-' + eventData.beta + '-' + eventData.alpha;
+      app.innerHTML = ' Значения : ' + (eventData.gamma).toFixed(0) + '-' + eventData.beta + '-' + eventData.alpha;
     }
 
     // const sensor = new AbsoluteOrientationSensor();
