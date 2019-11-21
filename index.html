@@ -9,31 +9,26 @@
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="sensor"></div>
+  <div id="browser-orientation"></div>
   <script>
     console.log('script downloaded');
-    var app = document.getElementById('app');
+    var sensor = document.getElementById('sensor');
+    var browserOrientation = document.getElementById('browser-orientation');
 
     if ('DeviceOrientationEvent' in window) {
       window.addEventListener('deviceorientation', deviceOrientationHandler, false);
     } else {
-      document.getElementById('logoContainer').innerText = 'Device Orientation API not supported.';
+      document.getElementById('sensor').innerText = 'Device Orientation API not supported.';
     }
 
     function deviceOrientationHandler(eventData) {
-      console.log(eventData);
-      app.innerHTML = ' Значения : ' + (eventData.gamma).toFixed(0) + ' - ' + (eventData.beta).toFixed(0) + ' - ' + (eventData.alpha).toFixed(0);
+      sensor.innerHTML = 'Sensore value : ' + (eventData.gamma).toFixed(0) + ' / ' + (eventData.beta).toFixed(0) + ' / ' + (eventData.alpha).toFixed(0);
     }
 
-    // const sensor = new AbsoluteOrientationSensor();
-    // sensor.addEventListener('reading', deviceOrientationHandler, false);
-
-    // sensor.addEventListener('error', function (error) {
-    //   if (event.error.name == 'NotReadableError') {
-    //     app.innerHTML = "Sensor is not available.";
-    //   }
-    // });
-    // sensor.start();
+    window.addEventListener("orientationchange", function() {
+      browserOrientation.innerHTML = 'Browser orientation angle: ' + screen.orientation.angle;
+    });
   </script>
 </body>
 
