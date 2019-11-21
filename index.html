@@ -9,8 +9,14 @@
 </head>
 
 <body>
-  <div id="sensor"></div>
-  <div id="browser-orientation"></div>
+  <div>
+    <span>Sensore value: </span>
+    <span id="sensor"></span>
+  </div>
+  <div>
+    <span>Browser orientation angle: </span>
+    <span id="browser-orientation"></span>
+  </div>
   <script>
     console.log('script downloaded');
     var sensor = document.getElementById('sensor');
@@ -23,11 +29,11 @@
     }
 
     function deviceOrientationHandler(eventData) {
-      sensor.innerHTML = 'Sensore value: ' + (eventData.gamma).toFixed(0) + ' / ' + (eventData.beta).toFixed(0) + ' / ' + (eventData.alpha).toFixed(0);
+      sensor.innerHTML = (eventData.gamma).toFixed(0) + ' / ' + (eventData.beta).toFixed(0) + ' / ' + (eventData.alpha).toFixed(0);
     }
 
     window.addEventListener("orientationchange", function() {
-      browserOrientation.innerHTML = 'Browser orientation angle: ' + screen.orientation.angle;
+      browserOrientation.innerHTML = screen.orientation.angle;
     });
   </script>
 </body>
