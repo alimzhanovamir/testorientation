@@ -9,16 +9,18 @@
 </head>
 
 <body>
-  <div id="app">App</div>
+  <div id="app"></div>
   <script>
     console.log('script downloaded');
     var app = document.getElementById('app');
 
+    function deviceOrientationHandler(eventData) {
+      console.log(eventData);
+      app.innerHTML = eventData + ' : ' + eventData.gamma + '-' + eventData.beta + '-' + eventData.alpha;
+    }
+
     const sensor = new AbsoluteOrientationSensor();
-    sensor.addEventListener('reading', function (eventData) {
-      console.log(eventData.gamma);
-      app.innerHTML = eventData.gamma + '-' + eventData.beta + '-' + eventData.alpha;
-    }, false);
+    sensor.addEventListener('reading', deviceOrientationHandler, false);
 
     sensor.addEventListener('error', function (error) {
       if (event.error.name == 'NotReadableError') {
