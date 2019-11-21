@@ -14,20 +14,26 @@
     console.log('script downloaded');
     var app = document.getElementById('app');
 
+    if ('DeviceOrientationEvent' in window) {
+      window.addEventListener('deviceorientation', deviceOrientationHandler, false);
+    } else {
+      document.getElementById('logoContainer').innerText = 'Device Orientation API not supported.';
+    }
+
     function deviceOrientationHandler(eventData) {
       console.log(eventData);
       app.innerHTML = eventData + ' : ' + eventData.gamma + '-' + eventData.beta + '-' + eventData.alpha;
     }
 
-    const sensor = new AbsoluteOrientationSensor();
-    sensor.addEventListener('reading', deviceOrientationHandler, false);
+    // const sensor = new AbsoluteOrientationSensor();
+    // sensor.addEventListener('reading', deviceOrientationHandler, false);
 
-    sensor.addEventListener('error', function (error) {
-      if (event.error.name == 'NotReadableError') {
-        app.innerHTML = "Sensor is not available.";
-      }
-    });
-    sensor.start();
+    // sensor.addEventListener('error', function (error) {
+    //   if (event.error.name == 'NotReadableError') {
+    //     app.innerHTML = "Sensor is not available.";
+    //   }
+    // });
+    // sensor.start();
   </script>
 </body>
 
