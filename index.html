@@ -14,7 +14,7 @@
     console.log('script downloaded');
     var app = document.getElementById('app');
 
-    if ('DeviceOrientationEvent' in window) {
+    if ('AbsoluteOrientationSensor' in window) {
       window.addEventListener('deviceorientation', deviceOrientationHandler, false);
     } else {
       document.getElementById('logoContainer').innerText = 'Device Orientation API not supported.';
